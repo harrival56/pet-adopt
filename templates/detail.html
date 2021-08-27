@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+        {% for msg in get_flashed_message %}
+    <p>{{msg}}</p>
+    {% endfor %}
+            <div class="col-3">
+            {% if pet.photo_url %}
+                <img src="{{pet.photo_url}}" class="img-fluid" alt="">
+            {% else %}
+            <img class="img-fluid" alt="{{pet.name}} does not have a photo">
+            {% endif%}
+            </div>
+            <div class="col-sm-6 col-6">
+            <h3> Name: <span class="text-info">{{pet.name}}</span></h3>
+            <h3>Specie: <span class="text-info">{{pet.species}}</span></h3>
+            {% if pet.age %}
+            <h3>Age: <span class="text-info">{{pet.age}}</span></h3>
+            {% endif%}
+            {% if pet.note %}
+            <h3>Note: <span class="text-info">{{pet.note}}</span></h3>
+            {% endif%}
+            {% if pet.available %}
+            <h3>Available?: <span class="text-info">Yes</span></h3>
+            {% else %}
+            <h3>Available?: <span class="text-info">No</span></h3>
+            {% endif %}
+            <a href="/pet/{{pet.id}}/edit" class="btn btn-primary">EDIT</a>
+            </div>
+        </div>
+    <a href="/" class="btn btn-secondary">Back</a>
+    </div>
+{% endblock %}
